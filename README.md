@@ -10,7 +10,7 @@ AI Chatbot NextGen adalah aplikasi chatbot berbasis web yang dikembangkan menggu
 - Menyimpan dan mengelola riwayat percakapan dengan aman
 
 ## Versi
-Versi Saat Ini: v1.1.0 - Fitur Lanjutan & Tema
+Versi Saat Ini: AI Chatbot NexGen
 - Pembaruan terakhir: Mei 2025
 - Peningkatan UI/UX
 - Penambahan fitur ekspor/impor chat
