@@ -1,252 +1,56 @@
-# AI Chatbot  
+# AI Chatbot (chatai.py)
 
 ## Deskripsi
-AI Chatbot NextGen adalah aplikasi chatbot berbasis web yang dikembangkan menggunakan framework Streamlit. Aplikasi ini menyediakan antarmuka chat yang modern dan interaktif yang terhubung dengan model-model AI terkini melalui OpenRouter API. Dengan fokus pada pengalaman pengguna yang optimal, aplikasi ini dilengkapi dengan berbagai fitur canggih seperti tema yang dapat disesuaikan, pilihan persona AI, dan sistem manajemen percakapan yang lengkap.
+`chatai.py` adalah aplikasi chatbot berbasis web yang dibangun menggunakan Streamlit dan terintegrasi dengan model AI melalui OpenRouter API. Aplikasi ini mendukung multi-chat, ekspor/impor riwayat, multi-persona, serta pengaturan model dan kreativitas secara interaktif.
 
-### Tujuan Aplikasi
-- Menyediakan akses mudah ke model-model AI canggih
-- Memfasilitasi interaksi yang natural dengan AI
-- Memberikan pengalaman pengguna yang dapat disesuaikan
-- Menyimpan dan mengelola riwayat percakapan dengan aman
+## Fitur Utama
+- **Multi-Model AI**: Pilih model AI (misal: Meta Llama 3 8B, DeepSeek Chat V3) secara dinamis.
+- **Multi-Chat**: Setiap sesi chat disimpan terpisah, dapat diganti nama, dihapus, dan diatur judul otomatis.
+- **Ekspor/Impor Riwayat**: Chat dapat diekspor ke format JSON, TXT, atau Markdown, serta diimpor kembali.
+- **Persona Bot**: Pilih persona (asisten umum, penulis kreatif, pakar sejarah, penerjemah, guru matematika) atau atur prompt sistem sendiri.
+- **Kontrol Kreativitas**: Slider untuk mengatur temperature (0.0-1.0) yang mempengaruhi kreativitas respons AI.
+- **Perintah Otomatis**: Mendukung perintah seperti `!help`, `!info_model`, `!waktu`, `!summarize_chat` untuk bantuan, info model, waktu server, dan ringkasan chat.
+- **Streaming Respons**: Respons AI tampil secara real-time, dapat dibatalkan oleh pengguna.
+- **Salin Cepat**: Fitur untuk menyalin respons terakhir bot.
+- **UI Interaktif**: Sidebar untuk navigasi chat, pengaturan model, persona, dan ekspor/impor.
 
-## Versi
-Versi Saat Ini: AI Chatbot NexGen
-- Pembaruan terakhir: Mei 2025
-- Peningkatan UI/UX
-- Penambahan fitur ekspor/impor chat
-- Optimalisasi performa streaming
+## Struktur Kode Utama
+- **Konfigurasi & Inisialisasi**: Penentuan model, persona, dan session state.
+- **Fungsi Helper**: Parsing riwayat, format timestamp, update judul chat, dsb.
+- **Manajemen Chat**: Buat chat baru, ganti nama, hapus, switch chat.
+- **Streaming & Kontrol**: Fungsi utama untuk streaming respons AI, pembatalan, dan penanganan error.
+- **UI Streamlit**: Sidebar (navigasi chat, pengaturan global), area utama (tampilan chat, input, tombol kontrol).
 
-## Fitur Utama dan Fungsi-Fungsi
+## Alur Utama Penggunaan
+1. Pilih atau buat chat baru di sidebar.
+2. Pilih model AI, persona, dan atur prompt sistem jika perlu.
+3. Mulai percakapan di area utama, gunakan perintah khusus jika dibutuhkan.
+4. Ekspor atau impor riwayat chat sesuai kebutuhan.
+5. Gunakan tombol "Regenerate" untuk mengulang respons bot, atau "Batalkan" untuk menghentikan streaming.
 
-### Integrasi Model AI
-- **Dukungan Multi-Model**
-  - Integrasi dengan OpenRouter API untuk akses ke model AI terkini
-  - Model default: Meta Llama 3 8B Instruct (optimal untuk tugas umum)
-  - Model tambahan: DeepSeek V3
-  
-- **Kontrol Kreativitas**
-  - Pengaturan temperatur (0.0 - 1.0) untuk mengontrol kreativitas respons
-  - Temperature rendah (0.0-0.3): Respons lebih konsisten dan faktual
-  - Temperature sedang (0.4-0.7): Keseimbangan antara kreativitas dan konsistensi
-  - Temperature tinggi (0.8-1.0): Respons lebih kreatif dan bervariasi
-
-### Sistem Persona (get_bot_response_stream)
-Fungsi ini mengelola interaksi dengan model AI dan mengatur persona:
-- **Persona Bawaan:**
-  - Asisten Umum (Default): Cocok untuk percakapan umum dan bantuan sehari-hari
-  - Penulis Kreatif: Spesialisasi dalam menulis kreatif dan generasi konten
-  - Ahli Sejarah: Memberikan informasi historis dengan konteks yang mendalam
-  - Penerjemah Profesional: Membantu dalam terjemahan antar bahasa
-  - Guru Matematika: Fokus pada penjelasan konsep matematika
-  
-- **Kustomisasi Persona**
-  - Sistem prompt yang dapat disesuaikan untuk setiap persona
-  - Penyimpanan preferensi persona dalam session state
-  - Kemampuan untuk membuat persona kustom
-
-### Sistem Tema Visual (get_theme_css_string)
-Fungsi ini mengelola tampilan visual aplikasi:
-- **Tema Bawaan:**
-  - Terang (Streamlit): Tema default yang cerah dan professional
-  - Gelap (Kustom): Tema gelap untuk penggunaan malam hari
-  - Abu-abu (Kustom): Tema netral yang nyaman dimata
-  
-- **Fitur Kustomisasi UI:**
-  - Penyesuaian warna primer dan sekunder
-  - Kustomisasi latar belakang dan teks
-  - Pengaturan tampilan widget dan tombol
-  - Styling khusus untuk pesan chat
-
-### Manajemen Chat (handle_automation_command)
-Fungsi ini mengatur semua aspek percakapan:
-- **Streaming Real-time:**
-  - Menampilkan respons AI secara progresif
-  - Indikator pengetikan yang responsif
-  - Penanganan streaming error yang halus
-  
-- **Pengelolaan Riwayat:**
-  - Penyimpanan otomatis setiap percakapan
-  - Pembatasan riwayat (10 pesan) untuk optimasi performa
-  - Timestamp untuk setiap pesan
-  
-- **Ekspor/Impor Data:**
-  - Format JSON: Untuk backup lengkap dengan metadata
-  - Format TXT: Untuk pembacaan mudah
-  - Format Markdown: Untuk dokumentasi terformat
-  
-- **Fitur Tambahan:**
-  - Salin cepat respons terakhir
-  - Preview pesan sebelum pengiriman
-  - Penghapusan riwayat dengan konfirmasi
-
-### Sistem Perintah (handle_automation_command)
-Fungsi ini mengatur perintah-perintah khusus dalam chat:
-
-**Perintah Tersedia dan Fungsinya:**
-- `!help` atau `!bantuan`
-  - Menampilkan daftar perintah yang tersedia
-  - Memberikan penjelasan singkat setiap perintah
-  - Contoh penggunaan untuk setiap perintah
-
-- `!info_model`
-  - Menampilkan informasi detail model AI aktif
-  - Menunjukkan parameter-parameter model
-  - Menampilkan batasan token dan kemampuan model
-
-- `!waktu`
-  - Menampilkan waktu server dalam format lokal
-  - Berguna untuk timestamp dan logging
-
-- `!summarize_chat`
-  - Menganalisis seluruh percakapan
-  - Menghasilkan ringkasan otomatis
-  - Menyoroti poin-poin penting diskusi
-
-## Detail Teknis
-
-### Dependensi dan Fungsinya
-- **Streamlit**
-  - Framework utama untuk UI web
-  - Penanganan state dan session
-  - Komponen interaktif
-
-- **Requests**
-  - Komunikasi dengan OpenRouter API
-  - Manajemen response streaming
-  - Penanganan error jaringan
-
-- **JSON**
-  - Parsing data API
-  - Format penyimpanan riwayat
-  - Pertukaran data antar komponen
-
-- **Datetime**
-  - Pengelolaan timestamp pesan
-  - Format waktu yang konsisten
-  - Pelacakan durasi sesi
-
-- **Regular Expressions (re)**
-  - Parsing format pesan
-  - Validasi input
-  - Pemrosesan teks khusus
-
-### Konfigurasi Sistem
-**Pengaturan Dasar:**
-- **API Configuration**
-  - OpenRouter API key dalam `.streamlit/secrets.toml`
-  - Validasi otomatis konfigurasi saat startup
-  - Penanganan error konfigurasi yang user-friendly
-
-- **Batasan Sistem**
-  - Maksimum riwayat: 10 pesan (optimasi performa)
-  - Rentang temperatur: 0.0 - 1.0 (kontrol respons)
-  - Timeout API: 180 detik
-
-### Fitur Keamanan (Security Features)
-**Implementasi Keamanan:**
-- **Manajemen API Key**
-  - Penyimpanan aman dalam Streamlit secrets
-  - Enkripsi data sensitif
-  - Rotasi key otomatis (opsional)
-
-- **Validasi dan Sanitasi**
-  - Pemeriksaan input pengguna
-  - Pencegahan injeksi berbahaya
-  - Rate limiting untuk permintaan API
-
-- **Error Handling**
-  - Penanganan timeout dan disconnect
-  - Logging kesalahan terstruktur
-  - Feedback pengguna yang informatif
-
-## Komponen UI
-
-### Antarmuka Utama (Main Interface)
-**Fitur Antarmuka:**
-- **Chat Interface**
-  - Gelembung pesan responsif
-  - Indikator status pengetikan
-  - Avatar pengguna dan bot
-  
-- **Kode dan Formatting**
-  - Syntax highlighting untuk kode
-  - Ekspansi blok kode otomatis
-  - Dukungan markdown dalam chat
-  
-- **Informasi Temporal**
-  - Timestamp real-time
-  - Indikator status pengiriman
-  - Penanda pesan baru
-
-### Kontrol Sidebar (Sidebar Controls)
-**1. Pengaturan Visual (update_active_theme_callback)**
-   - **Manajemen Tema**
-     - Selector tema dinamis
-     - Preview real-time perubahan
-     - Penyimpanan preferensi
-   - **Kustomisasi UI**
-     - Pengaturan warna komponen
-     - Konfigurasi font dan ukuran
-     - Penyesuaian layout
-
-**2. Pengaturan Model AI (update_system_prompt_from_persona_callback)**
-   - **Konfigurasi Model**
-     - Pemilihan model AI yang tersedia
-     - Informasi kemampuan model
-     - Status penggunaan model
-   - **Manajemen Persona**
-     - Pemilihan persona predefinisi
-     - Editor prompt sistem
-     - Preview karakter persona
-   - **Parameter Model**
-     - Slider temperature dengan preview
-     - Batasan token dan respons
-     - Pengaturan streaming
-
-**3. Manajemen Chat**
-   - **Kontrol Riwayat**
-     - Tombol hapus dengan konfirmasi
-     - Pencadangan otomatis
-     - Pembersihan cache
-   - **Fungsi Data**
-     - Ekspor multi-format
-     - Impor dengan validasi
-     - Sinkronisasi data
-   - **Utilitas**
-     - Salin cepat respons
-     - Share percakapan
-     - Bookmark penting
-
-## Penanganan Kesalahan
-- Manajemen kesalahan koneksi API
-- Validasi input
-- Validasi unggah file
-- Penanganan kesalahan streaming respons
-
-## Fitur Performa
-- Streaming pesan yang efisien
-- Manajemen riwayat chat yang optimal
-- Penanganan tugas latar belakang
-
-## Praktik Terbaik
-- Manajemen state sesi
-- Desain responsif
-- Pesan kesalahan yang bersih
-- Antarmuka ramah pengguna
-
-## Persyaratan
+## Dependensi
 - Python 3.x
 - Streamlit
-- Akses OpenRouter API
-- Koneksi internet
+- requests
+- json
+- datetime
+- re
 
-## Instruksi Pengaturan
-1. Instal dependensi yang diperlukan
-2. Konfigurasikan OpenRouter API key di `.streamlit/secrets.toml`
-3. Jalankan menggunakan `streamlit run chatai.py`
+## Cara Menjalankan
+1. Install dependensi: `pip install streamlit requests`
+2. Tambahkan API key OpenRouter di `.streamlit/secrets.toml`:
+   ```toml
+   OPENROUTER_API_KEY="sk-or-v1-..."
+   ```
+3. Jalankan aplikasi:
+   ```bash
+   streamlit run chatai.py
+   ```
 
 ## Catatan
-Aplikasi ini memerlukan OpenRouter API key yang valid untuk berfungsi. Pastikan konfigurasi yang tepat sebelum digunakan.
+- Pastikan koneksi internet aktif.
+- API key harus valid agar aplikasi dapat berjalan.
+- Semua chat disimpan di session state (memori), ekspor jika ingin menyimpan permanen.
 
 ---
-Dibuat dengan ❤️ menggunakan Streamlit dan OpenRouter API
+Dibuat dengan ❤️ oleh tim pengembang AI Chatbot NextGen.
