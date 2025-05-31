@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Profil Saya</title>
+    <style>
+        /* Gaya dasar untuk tata letak */
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header, section, footer {
+            padding: 20px;
+            margin-bottom: 10px;
+            background-color: white;
+        }
+        .container {
+            max-width: 960px;
+            margin: auto;
+            overflow: hidden;
+        }
+        /* Section 1: Menu */
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+        /* Section 2: Judul di Kiri dan Gambar di Kanan */
+        .section2-container {
+            display: flex;
+            align-items: center;
+        }
+        .section2-judul {
+            flex: 1;
+        }
+        .section2-gambar {
+            flex: 1;
+            text-align: right;
+        }
+        .section2-gambar img {
+            max-width: 200px; /* Atur ukuran gambar sesuai kebutuhan */
+            height: auto;
+            border-radius: 8px;
+        }
+        /* Section 3: Biodata dengan 6 Box (menggunakan tabel) */
+        .biodata-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .biodata-table th, .biodata-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .biodata-table th {
+            background-color: #f0f0f0;
+            width: 30%; /* Lebar kolom label */
+        }
+        .biodata-box { /* Ini hanya untuk ilustrasi jika ingin styling per box di luar tabel */
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        /* Section 4: Portofolio */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .portfolio-item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: center;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        .portfolio-item img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+        footer {
+            text-align: center;
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="#beranda">Beranda</a></li>
+                    <li><a href="#tentang">Tentang Saya</a></li>
+                    <li><a href="#biodata">Biodata</a></li>
+                    <li><a href="#portofolio">Portofolio</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <hr>
+
+        <section id="tentang">
+            <div class="section2-container">
+                <div class="section2-judul">
+                    <h1>Selamat Datang di Website saya</h1>
+                    <p>Ini adalah contoh dua header dengan dua kolom kiri berisi text seperti ini</p>
+                    <button> Pelajari lebih lanjut </button>
+                </div>
+                <div class="section2-gambar">
+                    <img src="https://via.placeholder.com/200" alt="Foto Profil">
+                    </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="biodata">
+            <h2>Biodata Lengkap</h2>
+            <p>Berikut adalah detail biodata saya yang disajikan dalam format tabel (sesuai permintaan 6 box, ini akan menjadi 6 baris data):</p>
+            <table class="biodata-table">
+                <tr>
+                    <th>Nama Lengkap</th>
+                    <td>[Nama Kamu]</td>
+                </tr>
+                <tr>
+                    <th>Tempat, Tanggal Lahir</th>
+                    <td>[Tempat Lahir], [Tanggal Lahir]</td>
+                </tr>
+                <tr>
+                    <th>Alamat</th>
+                    <td>[Alamat Lengkap Kamu]</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>[Alamat Email Kamu]</td>
+                </tr>
+                <tr>
+                    <th>Nomor Telepon</th>
+                    <td>[Nomor Telepon Kamu]</td>
+                </tr>
+                <tr>
+                    <th>Pendidikan Terakhir</th>
+                    <td>[Pendidikan Terakhir Kamu]</td>
+                </tr>
+                </table>
+
+            </section>
+
+        <hr>
+
+        <section id="portofolio">
+            <h2>Portofolio Saya</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://via.placeholder.com/300x200/FFC107/000000?text=Proyek+1" alt="Proyek 1">
+                    <h3>Judul Proyek 1</h3>
+                    <p>Deskripsi singkat mengenai proyek pertama.</p>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://via.placeholder.com/300x200/4CAF50/FFFFFF?text=Proyek+2" alt="Proyek 2">
+                    <h3>Judul Proyek 2</h3>
+                    <p>Deskripsi singkat mengenai proyek kedua.</p>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://via.placeholder.com/300x200/2196F3/FFFFFF?text=Proyek+3" alt="Proyek 3">
+                    <h3>Judul Proyek 3</h3>
+                    <p>Deskripsi singkat mengenai proyek ketiga.</p>
+                </div>
+                </div>
+        </section>
+
+        <hr>
+    </div>
+
+</body>
+</html> 
